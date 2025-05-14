@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include gps_attendance *.css
+recursive-include gps_attendance *.csv
+recursive-include gps_attendance *.html
+recursive-include gps_attendance *.ico
+recursive-include gps_attendance *.js
+recursive-include gps_attendance *.json
+recursive-include gps_attendance *.md
+recursive-include gps_attendance *.png
+recursive-include gps_attendance *.py
+recursive-include gps_attendance *.svg
+recursive-include gps_attendance *.txt
+recursive-exclude gps_attendance *.pyc
