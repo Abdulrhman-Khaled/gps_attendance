@@ -3,7 +3,7 @@ import frappe
 
 @frappe.whitelist()
 def get_mac(ip_address):
-    mac = get_mac_address(ip=ip_address)
+    mac = get_mac_address()
     if mac:
         return mac
     else:
