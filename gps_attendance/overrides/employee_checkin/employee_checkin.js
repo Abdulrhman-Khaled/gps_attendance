@@ -2,19 +2,19 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Employee Checkin', {
-  onload: (frm) => {
-    if (frm.is_new()) {
-      getAndSetCurrentLocation(frm);
+  // onload: (frm) => {
+  //   if (frm.is_new()) {
+  //     getAndSetCurrentLocation(frm);
 
-      getLocalIPAddress()
-        .then(ipAddress => {
-          console.log('Local IP Address:', ipAddress)
-          frm.set_value("ip" , ipAddress)
-        })
-        .catch(error => console.error('Error getting local IP address:', error));
+  //     getLocalIPAddress()
+  //       .then(ipAddress => {
+  //         console.log('Local IP Address:', ipAddress)
+  //         frm.set_value("ip" , ipAddress)
+  //       })
+  //       .catch(error => console.error('Error getting local IP address:', error));
       
-    }
-  },
+  //   }
+  // },
   employee_location(frm) {
     let latitude = '';
     let longitude = '';
@@ -91,13 +91,3 @@ function getLocalIPAddress() {
     };
   });
 }
-// function getLocalIPAddress(){
-//   let url = 'https://api.ipify.org?format=jsono';
-//   $.ajax({
-//     url: url,
-//     type: 'GET',
-//     success: function (result) {
-//       frm.set_value("ip" , result)
-//     },
-//   });
-// }
