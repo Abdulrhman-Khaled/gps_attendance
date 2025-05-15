@@ -32,23 +32,5 @@ class GPSEmployeeCheckin(EmployeeCheckin):
         if self.distance < 0 :
             frappe.throw(_("alloed distance only from origin is {} not {}").format(allowed_distance , self.distance))
         
-    
-    def onload_employee_checkin(doc, method):
-        if doc.is_new():
-            get_and_set_current_location(doc)
-            ip_address = get_local_ip_address()
-            if ip_address:
-                doc.ip = ip_address
-            frappe.log(f"Local IP Address: {ip_address}")
-
-    def get_local_ip_address():
-        import socket
-        try:
-            hostname = socket.gethostname()
-            ip_address = socket.gethostbyname(hostname)
-            return ip_address
-        except Exception as e:
-            frappe.log_error(f"Error getting local IP address: {str(e)}")
-            return None
-
+        
         
