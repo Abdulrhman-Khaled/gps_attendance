@@ -8,17 +8,17 @@ frappe.ui.form.on('Employee Checkin', {
 
       getLocalIPAddress()
         .then(ipAddress => {
-          console.log('Local IP Address:', ipAddress)
-          frm.set_value("ip" , ipAddress)    
-          
+          console.log('Local IP Address:', ipAddress)  
           frappe.call({
                     method: "gps_attendance.overrides.employee_checkin.get_mac.get_mac",
                     args: { ip_address: ipAddress },
                     callback: function(response) {
                         if (response.message) {
                             console.log('MAC Address:', response.message);
+                            frm.set_value("ip" , response.message)  
                         } else {
                             console.error('No MAC Address found');
+                            frm.set_value("ip" , "Not Found")  
                         }
                     },
                     error: function(error) {
