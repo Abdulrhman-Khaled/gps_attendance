@@ -12,7 +12,7 @@ frappe.ui.form.on('Employee Checkin', {
           frm.set_value("ip" , ipAddress)    
           
           frappe.call({
-                    method: "overrides.employee_checkin.GPSEmployeeCheckin.get_mac",
+                    method: "employee_checkin.GPSEmployeeCheckin.get_mac",
                     args: { ip_address: ipAddress },
                     callback: function(response) {
                         if (response.message) {
