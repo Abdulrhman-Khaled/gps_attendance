@@ -9,15 +9,22 @@ frappe.ui.form.on('Employee Checkin', {
       getLocalIPAddress()
         .then(ipAddress => {
           console.log('Local IP Address:', ipAddress)
-          frm.set_value("ip" , ipAddress)
-          const arp = require('arp');
-          arp.getMAC(ipAddress, (err, mac) => {
-              if (err) {
-                  console.error('Error getting MAC address:', err);
-              } else {
-                  console.log('MAC Address:', mac);
-              }
-          });
+          frm.set_value("ip" , ipAddress)    
+          
+          frappe.call({
+                    method: "gps_attendance.overrides.employee_checkin.GPSEmployeeCheckin.get_mac",
+                    args: { ip_address: ipAddress },
+                    callback: function(response) {
+                        if (response.message) {
+                            console.log('MAC Address:', response.message);
+                        } else {
+                            console.error('No MAC Address found');
+                        }
+                    },
+                    error: function(error) {
+                        console.error('Error calling get_mac:', error);
+                    }
+                });
         })
         .catch(error => console.error('Error getting local IP address:', error));
       
